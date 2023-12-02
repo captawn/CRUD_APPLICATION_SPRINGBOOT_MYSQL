@@ -2,6 +2,7 @@ package com.example.crudapplication.services;
 
 import com.example.crudapplication.dto.BookDTO;
 import com.example.crudapplication.entity.Book;
+import com.example.crudapplication.exception.BookServiceException;
 import com.example.crudapplication.repository.BookRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDTO> getAllBooks() {
         List<Book> books = bookRepository.findAll();
+        if (books.isEmpty()){
+            throw new BookServiceException("no book found");
+        }
         return books.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
