@@ -10,8 +10,6 @@ public class Book implements Serializable {
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name_generator")
-	@SequenceGenerator(name = "your_sequence_name_generator", sequenceName = "pt.book_seq", allocationSize = 1)
 	private Long id;
 
 	
